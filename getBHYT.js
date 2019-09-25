@@ -1,15 +1,24 @@
 var taikhoan="";
 var matkhau="";
-
+var tinhtrangravien = Array();
+tinhtrangravien[1] = 'Ra viện';
+tinhtrangravien[2] = 'Chuyển viện';
+tinhtrangravien[3] = 'Trốn viện';
+tinhtrangravien[4] = 'Xin ra viện';
+var ketquadieutri = Array();
+ketquadieutri[1] = 'Khỏi';
+ketquadieutri[2] = 'Đỡ';
+ketquadieutri[3] = 'Không thay đổi';
+ketquadieutri[4] = 'Nặng hơn';
+ketquadieutri[5] = 'Tử vong';
 
 function LayThongBHYT_LichSuKham() {
     var tendangnhap = '';
-    var matkhau = '';
-	$.get(window.location.origin+"/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",function(t){taikhoan=$(t).find("#motathamso123").val(),matkhau=md5($(t).find("#motathamso124").val())});
+	$.get(window.location.origin+"/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",function(t){taikhoan=$(t).find("#motathamso123").val(),matkhau=$(t).find("#motathamso124").val()});
 	console.log("Khởi tạo thành công");
     //chrome.storage.sync.get(['tendangnhap', 'matkhau'], function(items) {
         tendangnhap = taikhoan;
-        //matkhau = matkhau;
+        matkhau = MD5(matkhau);
 		console.log(tendangnhap +'  '+ matkhau);
 			
         if (tendangnhap || matkhau) {
@@ -235,12 +244,12 @@ function LayThongBHYT_LichSuKham() {
                         }
                         
                     } else {
-                        swal('Tên đăng nhập hoặc mật khẩu không đúng!');
+                        return 'Tên đăng nhập hoặc mật khẩu không đúng!';
                     }
                 }
             });
         } else {
-            swal('Cần thiết lập tên đăng nhập và mật khẩu');
+            return 'Cần thiết lập tên đăng nhập và mật khẩu';
         }
     //});
 }
@@ -369,7 +378,7 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
                                 }
                                 text + '</tbody></table>';
                             }
-                            swal(text);
+                            return text;
                         /*},
                         error: function(result){
                             alert('error!');
@@ -509,7 +518,7 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
 												text+='</div>';
 											}
                                         }
-                                        swal(text);
+                                        alert(text);
                                     },
                                     error: function(result){
                                         alert('error!');
@@ -518,13 +527,13 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
                             } else {
                                 text += '<br/> <span style="color:#006600;font-size: 14pt;font-weight: bold;">' + dulieubaohiem.ghiChu;
                                 text += '</span>';
-                                swal(text);
+                                alert(text);
                             }
                         }
                     });*/
                 }
             } else {
-                swal('<span style="color:red">' + result.ghiChu + '</span>');
+                return '<span style="color:red">' + result.ghiChu + '</span>';
             }
         }
     });
