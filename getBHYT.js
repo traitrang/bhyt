@@ -1,12 +1,12 @@
 var taikhoan="";
 var matkhau="";
-$.get(window.location.origin+"/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",function(t){taikhoan=$(t).find("#motathamso123").val(),matkhau=md5($(t).find("#motathamso124").val())});
- console.log("Khởi tạo thành công");
-}
+
+
 function LayThongBHYT_LichSuKham() {
     var tendangnhap = '';
     var matkhau = '';
-
+	$.get(window.location.origin+"/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",function(t){taikhoan=$(t).find("#motathamso123").val(),matkhau=md5($(t).find("#motathamso124").val())});
+	console.log("Khởi tạo thành công");
     //chrome.storage.sync.get(['tendangnhap', 'matkhau'], function(items) {
         tendangnhap = taikhoan;
         //matkhau = matkhau;
