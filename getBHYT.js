@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var taikhoan="";
 var matkhau="";
 var tinhtrangravien = Array();
