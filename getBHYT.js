@@ -1,10 +1,15 @@
+var taikhoan="";
+var matkhau="";
+$.get(window.location.origin+"/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",function(t){taikhoan=$(t).find("#motathamso123").val(),matkhau=md5($(t).find("#motathamso124").val())});
+ console.log("Khởi tạo thành công");
+}
 function LayThongBHYT_LichSuKham() {
     var tendangnhap = '';
     var matkhau = '';
 
-    chrome.storage.sync.get(['tendangnhap', 'matkhau'], function(items) {
-        tendangnhap = items.tendangnhap;
-        matkhau = MD5(items.matkhau);
+    //chrome.storage.sync.get(['tendangnhap', 'matkhau'], function(items) {
+        tendangnhap = taikhoan;
+        //matkhau = matkhau;
 		console.log(tendangnhap +'  '+ matkhau);
 			
         if (tendangnhap || matkhau) {
@@ -237,7 +242,7 @@ function LayThongBHYT_LichSuKham() {
         } else {
             swal('Cần thiết lập tên đăng nhập và mật khẩu');
         }
-    });
+    //});
 }
 function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, ngayBD, ngayKT, noidangky, gioitinh) {
     var url = "https://egw.baohiemxahoi.gov.vn/api/egw/NhanLichSuKCB2018?token=" + dataAuth.APIKey.access_token + '&id_token=' + dataAuth.APIKey.id_token + '&username=' + tendangnhap + '&password=' + matkhau;
