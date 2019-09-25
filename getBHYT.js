@@ -14,7 +14,7 @@ ketquadieutri[5] = 'Tử vong';
 
 function LayThongBHYT_LichSuKham() {
     var tendangnhap = '';
-	$.get(window.location.origin+"/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",function(t){taikhoan=$(t).find("#motathamso123").val(),matkhau=$(t).find("#motathamso124").val()});
+	$.get(window.location.origin+"/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",function(t){taikhoan=$(t).find("#motathamso123").val();matkhau=$(t).find("#motathamso124").val()});
 	console.log("Khởi tạo thành công");
     //chrome.storage.sync.get(['tendangnhap', 'matkhau'], function(items) {
         tendangnhap = taikhoan;
@@ -259,6 +259,7 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
 	document.getElementById("tungay").disabled = true;
 	document.getElementById("denngay").disabled = true;
 	}
+	
     $.ajax({
         url : url,
         type : "post",
@@ -276,12 +277,6 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
 				text = '';
                 var dulieubaohiem = result;
                 if (result.dsLichSuKCB2018) {
-                    /*var url1 = "https://egw.baohiemxahoi.gov.vn/api/egw/nhanHoSoKCBChiTiet?token=" + dataAuth.APIKey.access_token + '&id_token=' + dataAuth.APIKey.id_token + '&username=' + tendangnhap + '&password=' + matkhau + '&maHoSo=' + result.dsLichSuKCB2018[0].maHoSo
-                    $.ajax({
-                        url : url1,
-                        type : "post",
-                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                        success : function (result){*/
                             text = '<span style="font-size:16px">';
                             var stringNgayra = dulieubaohiem.dsLichSuKCB2018[0].ngayVao;
                             var stringNgayvao = dulieubaohiem.dsLichSuKCB2018[0].ngayRa;
@@ -379,158 +374,11 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
                                 text + '</tbody></table>';
                             }
                             return text;
-                        /*},
-                        error: function(result){
-                            alert('error!');
-                        }*/
-                    //});
                 } else {
 					var urllichsu = "https://egw.baohiemxahoi.gov.vn/api/egw/nhanLichSuKCB?token=" + dataAuth.APIKey.access_token 
                     + '&id_token=' + dataAuth.APIKey.id_token 
                     + '&username=' + tendangnhap 
                     + '&password=' + matkhau;
-                    /*$.ajax({// nhanLichSuKCB -- Update ngay 05/09/2019 hiện nay chức năng NhanLichSuKCB2018 đã cung cấp lịch sử KCB lên tạm thời hàm này không dùng.
-                        url : urllichsu,
-                        type : "post",
-                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                        data : {
-                             maThe : mathe,
-                             hoTen : ten,
-                             ngaySinh : ngaysinh,
-                             gioiTinh : gioitinh,
-                             maCSKCB : noidangky,
-                             ngayBD : ngayBD,
-                             ngayKT : ngayKT
-                        },
-                        success : function (result){
-                            if (result.dsLichSuKCB) {
-                                var url1 = "https://egw.baohiemxahoi.gov.vn/api/egw/nhanHoSoKCBChiTiet?token=" + dataAuth.APIKey.access_token 
-                                + '&id_token=' + dataAuth.APIKey.id_token 
-                                + '&username=' + tendangnhap 
-                                + '&password=' + matkhau + '&maHoSo=' 
-                                + result.dsLichSuKCB[0].maHoSo;
-                                $.ajax({
-                                    url : url1,
-                                    type : "post",
-                                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                                    success : function (result1){
-                                        text += '<span style="font-size:16px">';
-                                        var stringNgayra = result1.hoSoKCB.xml1.NgayRa;
-                                        var stringNgayvao = String(result1.hoSoKCB.xml1.NgayVao);
-                                        stringNgayra = stringNgayra.substring(6,8) + '-' + stringNgayra.substring(4,6) + '-' + stringNgayra.substring(0,4) + '   ' + stringNgayra.substring(8,10) + ' : ' + stringNgayra.substring(10,12);
-                                        stringNgayvao = stringNgayvao.substring(6,8) + '-' + stringNgayvao.substring(4,6) + '-' + stringNgayvao.substring(0,4) + '   ' + stringNgayvao.substring(8,10) + ' : ' + stringNgayvao.substring(10,12);
-                                        
-                                        text += '<br/>Thời gian vào viện gần nhất: <span style="color:#006600">' + stringNgayvao + '</span>';
-                                        text += '<br/>Thời gian xuất viện gần nhất: <span style="color:#006600">' + stringNgayra + '</span>';
-                                        if (dulieubaohiem.gtTheTu != ngayBD || dulieubaohiem.gtTheDen != ngayKT) {
-                                            text += '<br/><span style="color:red">Sai thời hạn sử dụng thẻ. Thời hạn đúng: ' + dulieubaohiem.gtTheTu + ' - ' + dulieubaohiem.gtTheDen + '</span>';
-                                        }
-
-                                        if (dulieubaohiem.ngaySinh != ngaysinh) {
-                                            text += '<br/><span style="color:red">Sai ngày sinh. Ngày sinh đúng: ' + dulieubaohiem.ngaySinh + '</span>';
-                                        }
-
-                                        if (document.URL.indexOf('khambenhnoitru') != -1) {
-                                            text = '';
-                                            if (dulieubaohiem.gtTheTu != ngayBD || dulieubaohiem.gtTheDen != ngayKT) {
-                                                text = '<br/><span style="color:red">Thời hạn thẻ: ' + dulieubaohiem.gtTheTu + ' - ' + dulieubaohiem.gtTheDen + '</span>';
-                                            }
-                                            if (dulieubaohiem.ngaySinh != ngaysinh) {
-                                                text += '<br/><span style="color:red">Ngày sinh đúng: ' + dulieubaohiem.ngaySinh + '</span>';
-                                            }
-                                        }
-
-                                        if (dulieubaohiem.maDKBD != noidangky) {
-                                            text += '<br/><span style="color:red">Sai nơi đăng ký. Nơi đăng ký đúng: ' + dulieubaohiem.maDKBD + '</span>';
-                                        }
-
-                                        var convertGt = dulieubaohiem.gioiTinh == 'Nam' ? 1 : 2;
-                                        if (convertGt != gioitinh) {
-                                            text += '<br/><span style="color:red">Sai giới tính. Giới tính đúng: ' + dulieubaohiem.gioiTinh + '</span>';
-                                        }
-
-                                        text += '<br/> <span style="color:#006600;font-size: 14pt;font-weight: bold;">' + dulieubaohiem.ghiChu;
-                                        text += '</span>';
-                                        if (result.dsLichSuKCB) {
-                                            var today = new Date();
-                                            var dd = today.getDate();
-                                            var mm = today.getMonth() + 1; //January is 0!
-
-                                            var yyyy = today.getFullYear();
-                                            if(dd < 10){
-                                                dd= '0' + dd;
-                                            }
-                                            if(mm < 10){
-                                                mm= '0' + mm;
-                                            }
-                                            var today = dd+'-'+mm+'-'+yyyy;
-                                            var lastDay = stringNgayra.substring(0,10);
-                                            //var d = '';
-                                            console.log('abc');
-                                            console.log(today + 'xxx' + lastDay);
-                                            if (today == lastDay) {
-                                                text += '<br/><span style="color: red;">Bệnh nhân đã khám một lần trong ngày!</span>';
-                                            }
-											
-											if(document.URL.indexOf('khambenhngoaitru') === -1)
-											{
-												text += '<br/><table border="1" style="font-size: 10px"><tbody style="display: inline-block;overflow-y: scroll;max-height:200px;">';
-												var headerTAble = [
-													'STT',  
-													'Mã thẻ BHYT',
-													'Họ và tên',   
-													'Ngày vào viện',
-													'Ngày ra viện',
-													'Chẩn đoán',
-													'Cơ sở KCB',
-													'Kết quả điều trị',
-													'Tình trạng ra viện',
-												];
-												text += '<tr>';
-													for (var a = 0; a <= headerTAble.length - 1; a++) {
-														text += '<td>' + headerTAble[a] + '</td>';
-													}
-												text += '</tr>';
-												for (var i = 0; i <= result.dsLichSuKCB.length - 1; i ++) {
-													text += '<tr>';
-														text += '<td>' + (i + 1) + '</td>';
-														text += '<td>' + mathe + '</td>';
-														text += '<td>' + ten + '</td>';
-														text += '<td>' + result.dsLichSuKCB[i].tuNgay + '</td>';
-														text += '<td>' + result.dsLichSuKCB[i].denNgay + '</td>';
-														text += '<td>' + result.dsLichSuKCB[i].tenBenh + '</td>';
-														text += '<td>' + result.dsLichSuKCB[i].maCSKCB + '</td>';
-														text += '<td>' + ketquadieutri[result.dsLichSuKCB[i].kqDieuTri] + '</td>';
-														text += '<td>' + tinhtrangravien[result.dsLichSuKCB[i].tinhTrang] + '</td>';
-													text += '</tr>';
-												}
-												text +'</tbody></table>';
-											}
-											else{
-												text +='<div id="tree">';
-													text+='<ul><li>Lịch sử các lần KCB <ul>';
-													for (var i = 0; i <= result.dsLichSuKCB.length - 1; i ++) {
-															text += '<li>' + result.dsLichSuKCB[i].maHoSo + '<ul>';
-															text += '<li>' + result.dsLichSuKCB[i].maCSKCB+': Từ '+ result.dsLichSuKCB[i].tuNgay+' - '+ result.dsLichSuKCB[i].denNgay + '</li>';
-														text += '</ul></li>';
-													}
-													text+='</ul></li></ul>';
-												text+='</div>';
-											}
-                                        }
-                                        alert(text);
-                                    },
-                                    error: function(result){
-                                        alert('error!');
-                                    }
-                                });
-                            } else {
-                                text += '<br/> <span style="color:#006600;font-size: 14pt;font-weight: bold;">' + dulieubaohiem.ghiChu;
-                                text += '</span>';
-                                alert(text);
-                            }
-                        }
-                    });*/
                 }
             } else {
                 return '<span style="color:red">' + result.ghiChu + '</span>';
