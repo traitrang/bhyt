@@ -19,7 +19,7 @@ function LayThongBHYT_LichSuKham() {
                 },
                 success : function (result){
                     var dataAuth = result;
-					console.log(result);*/
+					console.log(result);
                     if (result.APIKey) {
                         var ngaysinh = '';
                         var ten = '';
@@ -231,7 +231,7 @@ function LayThongBHYT_LichSuKham() {
                         
                     } else {
                         swal('Tên đăng nhập hoặc mật khẩu không đúng!');
-                    }*/
+                    }
                 }
             });
         } else {
