@@ -14,7 +14,7 @@ ketquadieutri[5] = 'Tử vong';
 
 function LayThongBHYT_LichSuKham() {
     var tendangnhap = '';
-	$.get(window.location.origin+"/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",function(t){tendangnhap=$(t).find("#motathamso123").val();matkhau=$(t).find("#motathamso124").val()});
+	$.get(window.location.origin+"/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",function(t){tendangnhap=$(t).find("#motathamso123").val();});
 	//console.log("Khởi tạo thành công");
     //chrome.storage.sync.get(['tendangnhap', 'matkhau'], function(items) {
         tendangnhap = tendangnhap;
