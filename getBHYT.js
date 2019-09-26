@@ -14,243 +14,249 @@ ketquadieutri[5] = 'Tử vong';
 
 function LayThongBHYT_LichSuKham() {
     var tendangnhap = '';
-	$.get("https://yte-hungyen.vnpthis.vn/web_his/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",function(t){tendangnhap=$(t).find("#motathamso123").val()});
-	//console.log("Khởi tạo thành công");
-    //chrome.storage.sync.get(['tendangnhap', 'matkhau'], function(items) {
-        tendangnhap = tendangnhap;
-        matkhau = MD5(matkhau);
-		console.log(tendangnhap +'  '+ matkhau);
-			
-        if (tendangnhap || matkhau) {
-            $.ajax({
-                url : "https://egw.baohiemxahoi.gov.vn/api/token/take",
-                type : "post",
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-				dataType:"json",
-                data : {
-                     username : tendangnhap,
-                     password : matkhau
-                },
-                success : function (result){
-                    var dataAuth = result;
-					console.log(result);
-                    if (result.APIKey) {
-                        var ngaysinh = '';
-                        var ten = '';
-                        var mathe = '';
-                        var gioitinh = '';
-                        var noidangky = '';
-                        var ngayBD = '';
-                        var ngayKT = '';
-                        if (document.URL.indexOf('vnptsoftware.vn/vnpthis') != -1) {
-                            if (document.URL.indexOf('_tiepnhan_') != -1) {
-                                ngaysinh = $('#txtNGAYSINH').val() ? $('#txtNGAYSINH').val() : $('#txtNAMSINH').val();
-                                ten = $('#txtTENBENHNHAN').val();
-                                mathe = $('#txtMA_BHYT').val();
-                                gioitinh = $('#txtTKGIOITINHID').val();
-                                noidangky = $('#txtMA_KCBBD').val();
-                                ngayBD = $('#txtBHYT_BD').val();
-                                ngayKT = $('#txtBHYT_KT').val();
-                            } else if (document.URL.indexOf('_ChuyenDoiTuong') != -1) {
-                                ngaysinh = $('#txtNGAYSINH').val();
-                                ten = $('#txtTENBENHNHAN').val();
-                                mathe = $('#txtMABHYT').val();
-                                gioitinh = $('#cboGIOITINHID').val();
-                                noidangky = $('#txtTKDKKBBD').val();
-                                ngayBD = $('#txtBHYT_BD').val();
-                                ngayKT = $('#txtBHYT_KT').val();
-                            }
-                        }
-
-                        if (document.URL.indexOf('vnpthis.vn/web_his') != -1) {
-                            if (document.URL.indexOf('tiepnhan') != -1) {
-                                var ten = $('#hoten').val();
-                                var mathe = $('#sobhyt').val();
-                                var ngaysinh = $('#namsinh').val();
-                                var isChiNamsinh = $('#chinamsinh').is(":checked");
-                                var ngayBD = $('#tungay').val();
-                                var ngayKT = $('#denngay').val();
-                                var noidangky = $('#noidangky').val();
-                                var gioitinh = $('#gioitinh').val() == 1 ? 1 : 2;
-								
-								if (isChiNamsinh) {
-									y = new Date(ngaysinh);
-									ngaysinh = y.getFullYear();
+	$.get("https://yte-hungyen.vnpthis.vn/web_his/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",
+			function(t)
+			{
+				tendangnhap=$(t).find("#motathamso123").val();
+				tendangnhap=$(t).find("#motathamso124").val();
+				
+				matkhau = MD5(matkhau);
+				console.log(tendangnhap +'  '+ matkhau);
+					
+				if (tendangnhap || matkhau) {
+					$.ajax({
+						url : "https://egw.baohiemxahoi.gov.vn/api/token/take",
+						type : "post",
+						contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+						dataType:"json",
+						data : {
+							 username : tendangnhap,
+							 password : matkhau
+						},
+						success : function (result){
+							var dataAuth = result;
+							console.log(result);
+							if (result.APIKey) {
+								var ngaysinh = '';
+								var ten = '';
+								var mathe = '';
+								var gioitinh = '';
+								var noidangky = '';
+								var ngayBD = '';
+								var ngayKT = '';
+								if (document.URL.indexOf('vnptsoftware.vn/vnpthis') != -1) {
+									if (document.URL.indexOf('_tiepnhan_') != -1) {
+										ngaysinh = $('#txtNGAYSINH').val() ? $('#txtNGAYSINH').val() : $('#txtNAMSINH').val();
+										ten = $('#txtTENBENHNHAN').val();
+										mathe = $('#txtMA_BHYT').val();
+										gioitinh = $('#txtTKGIOITINHID').val();
+										noidangky = $('#txtMA_KCBBD').val();
+										ngayBD = $('#txtBHYT_BD').val();
+										ngayKT = $('#txtBHYT_KT').val();
+									} else if (document.URL.indexOf('_ChuyenDoiTuong') != -1) {
+										ngaysinh = $('#txtNGAYSINH').val();
+										ten = $('#txtTENBENHNHAN').val();
+										mathe = $('#txtMABHYT').val();
+										gioitinh = $('#cboGIOITINHID').val();
+										noidangky = $('#txtTKDKKBBD').val();
+										ngayBD = $('#txtBHYT_BD').val();
+										ngayKT = $('#txtBHYT_KT').val();
+									}
 								}
-								
-								kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, ngayBD, ngayKT, noidangky, gioitinh);
-                            } else if (document.URL.indexOf('kiemtrabangke') != -1 ) {
-                                var ten = $('#hoten').val();
-                                var mathe = $('#sobhyt').val();
-                                var ngaysinh = $('#namsinh').val();
-                                var isChiNamsinh = $('#chinamsinh').is(":checked");
-                                var ngayBD = $('#gttungay').val();
-                                var ngayKT = $('#gtdenngay').val();
-                                var noidangky = $('#noidk').val();
-                                var gioitinh = $('#gioitinh').val() == 'true' ? 1 : 2;
-                                var mayte = $('#mayte').val() ? $('#mayte').val() : $('#mabn').val();
-                                $.ajax({
-                                    url : window.location.origin + '/web_his/thongtinhanhchinh_nhapvien_theomabenhnhan?mabenhnhan=' + mayte,
-                                    type : "GET",
-                                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                                    data : {
-                                    },
-                                    success : function (result){
-                                        var dateNs = new Date(result[0].NGAY_SINH);
-                                        if (result[0].HIEN_NAMSINH) {
-                                            ngaysinh = dateNs.getFullYear();
-                                        } else {
-                                            var dd = dateNs.getDate();
-                                            var mm = dateNs.getMonth() + 1; //January is 0!
 
-                                            var yyyy = dateNs.getFullYear();
-                                            if(dd < 10){
-                                                dd= '0' + dd;
-                                            }
-                                            if(mm < 10){
-                                                mm= '0' + mm;
-                                            }
-                                            ngaysinh = dd+'/'+mm+'/'+yyyy;
-                                        }
-
-                                        kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, ngayBD, ngayKT, noidangky, gioitinh);
-                                    }
-                                });
-
-                                return;
-                            } else if (document.URL.indexOf('khambenhnoitru') != -1) {
-								var id = $("#list_benhnhan").jqGrid('getGridParam', 'selrow');
-                                var ret = $("#list_benhnhan").jqGrid('getRowData', id);
-                                var ten = $('#hoten').val();
-                                var mathe = $('#bhyt').val();
-                                var dt = new Date();
-                                var ngaysinh = '';
-                                var gioitinh = $('#gioitinh').val() == 'true' ? 1 : 2;
-                                var noidangky = '';//$('#noidangkybandau').val().substring(0,5);
-                                var isChiNamsinh = false;
-                                var ngayBD = '';
-                                var ngayKT = '';
-								var stt_benhan='';
-								var stt_dotdieutri='';
-								
-								var id = $("#list_benhnhan").jqGrid('getGridParam', 'selrow');
-                                var ret = $("#list_benhnhan").jqGrid('getRowData', id);
-								if(mathe !=''||mathe!=null){
+								if (document.URL.indexOf('vnpthis.vn/web_his') != -1) {
+									if (document.URL.indexOf('tiepnhan') != -1) {
+										var ten = $('#hoten').val();
+										var mathe = $('#sobhyt').val();
+										var ngaysinh = $('#namsinh').val();
+										var isChiNamsinh = $('#chinamsinh').is(":checked");
+										var ngayBD = $('#tungay').val();
+										var ngayKT = $('#denngay').val();
+										var noidangky = $('#noidangky').val();
+										var gioitinh = $('#gioitinh').val() == 1 ? 1 : 2;
+										
+										if (isChiNamsinh) {
+											y = new Date(ngaysinh);
+											ngaysinh = y.getFullYear();
+										}
+										
+										kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, ngayBD, ngayKT, noidangky, gioitinh);
+									} else if (document.URL.indexOf('kiemtrabangke') != -1 ) {
+										var ten = $('#hoten').val();
+										var mathe = $('#sobhyt').val();
+										var ngaysinh = $('#namsinh').val();
+										var isChiNamsinh = $('#chinamsinh').is(":checked");
+										var ngayBD = $('#gttungay').val();
+										var ngayKT = $('#gtdenngay').val();
+										var noidangky = $('#noidk').val();
+										var gioitinh = $('#gioitinh').val() == 'true' ? 1 : 2;
+										var mayte = $('#mayte').val() ? $('#mayte').val() : $('#mabn').val();
 										$.ajax({
-										url : window.location.origin + '/web_his/noitru_ttbenhnhan?mabenhnhan=' + ret.MA_BENH_NHAN,
-										type : "GET",
-										contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-										success:function(resuft){
-											ngaysinh=resuft.NGAY_SINH;
-											$.ajax({
-												url : window.location.origin + '/web_his/noitru_chitiet_dotdieutri?stt_benhan='+ret.stt_benhan+'&stt_dotdieutri='+ret.stt_dotdieutri+'&dvtt='+tendangnhap.substring(0,5),
+											url : window.location.origin + '/web_his/thongtinhanhchinh_nhapvien_theomabenhnhan?mabenhnhan=' + mayte,
+											type : "GET",
+											contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+											data : {
+											},
+											success : function (result){
+												var dateNs = new Date(result[0].NGAY_SINH);
+												if (result[0].HIEN_NAMSINH) {
+													ngaysinh = dateNs.getFullYear();
+												} else {
+													var dd = dateNs.getDate();
+													var mm = dateNs.getMonth() + 1; //January is 0!
+
+													var yyyy = dateNs.getFullYear();
+													if(dd < 10){
+														dd= '0' + dd;
+													}
+													if(mm < 10){
+														mm= '0' + mm;
+													}
+													ngaysinh = dd+'/'+mm+'/'+yyyy;
+												}
+
+												kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, ngayBD, ngayKT, noidangky, gioitinh);
+											}
+										});
+
+										return;
+									} else if (document.URL.indexOf('khambenhnoitru') != -1) {
+										var id = $("#list_benhnhan").jqGrid('getGridParam', 'selrow');
+										var ret = $("#list_benhnhan").jqGrid('getRowData', id);
+										var ten = $('#hoten').val();
+										var mathe = $('#bhyt').val();
+										var dt = new Date();
+										var ngaysinh = '';
+										var gioitinh = $('#gioitinh').val() == 'true' ? 1 : 2;
+										var noidangky = '';//$('#noidangkybandau').val().substring(0,5);
+										var isChiNamsinh = false;
+										var ngayBD = '';
+										var ngayKT = '';
+										var stt_benhan='';
+										var stt_dotdieutri='';
+										
+										var id = $("#list_benhnhan").jqGrid('getGridParam', 'selrow');
+										var ret = $("#list_benhnhan").jqGrid('getRowData', id);
+										if(mathe !=''||mathe!=null){
+												$.ajax({
+												url : window.location.origin + '/web_his/noitru_ttbenhnhan?mabenhnhan=' + ret.MA_BENH_NHAN,
 												type : "GET",
 												contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-												success:function(res){
-													kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, res.ngaybatdau_theBHYT, res.ngayhethan_theBHYT, res.noidangkybandau, gioitinh);
+												success:function(resuft){
+													ngaysinh=resuft.NGAY_SINH;
+													$.ajax({
+														url : window.location.origin + '/web_his/noitru_chitiet_dotdieutri?stt_benhan='+ret.stt_benhan+'&stt_dotdieutri='+ret.stt_dotdieutri+'&dvtt='+tendangnhap.substring(0,5),
+														type : "GET",
+														contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+														success:function(res){
+															kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, res.ngaybatdau_theBHYT, res.ngayhethan_theBHYT, res.noidangkybandau, gioitinh);
+														}
+													});
 												}
 											});
 										}
-									});
+										
+										$.ajax({
+											url : window.location.origin + '/web_his/thongtinhanhchinh_nhapvien_theomabenhnhan?mabenhnhan=' + $('#mabenhnhan').val(),
+											type : "GET",
+											contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+											data : {
+											},
+											success : function (result){
+												var dateNs = new Date(result[0].NGAY_SINH);
+												if (result[0].HIEN_NAMSINH) {
+													ngaysinh = dateNs.getFullYear();
+												} else {
+													var dd = dateNs.getDate();
+													var mm = dateNs.getMonth() + 1; //January is 0!
+
+													var yyyy = dateNs.getFullYear();
+													if(dd < 10){
+														dd= '0' + dd;
+													}
+													if(mm < 10){
+														mm= '0' + mm;
+													}
+													ngaysinh = dd+'/'+mm+'/'+yyyy;
+												}
+
+												DVTT = result[0].DVTT;
+												STT_BENHAN = result[0].STT_BENHAN;
+												$.ajax({
+													url : window.location.origin + '/web_his/noitru_chitiet_dotdieutri',
+													type : "post",
+													contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+													data : {
+														 dvtt : DVTT,
+														 stt_benhan : STT_BENHAN,
+														 stt_dotdieutri : $('#txt_dotdieutri').val()
+													},
+													success : function (data){
+														ngayBD = data.NGAYBATDAU_THEBHYT;
+														ngayKT = data.NGAYHETHAN_THEBHYT;
+														noidangky = data.NOIDANGKYBANDAU;
+														kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, ngayBD, ngayKT, noidangky, gioitinh);
+													}
+												});
+											}
+										});
+
+										//return;
+									}else if(document.URL.indexOf('khambenhngoaitru') != -1){
+										
+										$.ajax({
+											url : window.location.origin +'/web_his/timkiembntheobhyt?bhyt=0&mabn=' + $('#mayte').val(),
+											type : "GET",
+											contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+											data : {
+											},
+											success : function (result){
+												var dateNs = new Date(result[0].NGAY_SINH);
+												var ten = $('#hoten').val();
+												var mathe = $('#bhyt').val();
+												var gioitinh = $('#gioitinh').val() == 'true' ? 1 : 2;
+												if (result[0].HIEN_NAMSINH) {
+													ngaysinh = dateNs.getFullYear();
+												} else {
+													var dd = dateNs.getDate();
+													var mm = dateNs.getMonth() + 1; //January is 0!
+
+													var yyyy = dateNs.getFullYear();
+													if(dd < 10){
+														dd= '0' + dd;
+													}
+													if(mm < 10){
+														mm= '0' + mm;
+													}
+													ngaysinh = dd+'/'+mm+'/'+yyyy;
+												}
+						
+												DVTT = result[0].DVTT;
+												ngayBD = result[0].NGAY_BATDAUHIEULUC.substring(8,10)+'/'+result[0].NGAY_BATDAUHIEULUC.substring(5,7)+'/'+result[0].NGAY_BATDAUHIEULUC.substring(0,4);
+												ngayKT = result[0].NGAY_KETTHUC.substring(8,10)+'/'+result[0].NGAY_KETTHUC.substring(5,7)+'/'+result[0].NGAY_KETTHUC.substring(0,4);
+												noidangky = result[0].MA_NOITIEPNHAN;
+												kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, ngayBD, ngayKT, noidangky, gioitinh);
+											}
+										});
+										return;
+									}
+
+
+
 								}
 								
-                                $.ajax({
-                                    url : window.location.origin + '/web_his/thongtinhanhchinh_nhapvien_theomabenhnhan?mabenhnhan=' + $('#mabenhnhan').val(),
-                                    type : "GET",
-                                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                                    data : {
-                                    },
-                                    success : function (result){
-                                        var dateNs = new Date(result[0].NGAY_SINH);
-                                        if (result[0].HIEN_NAMSINH) {
-                                            ngaysinh = dateNs.getFullYear();
-                                        } else {
-                                            var dd = dateNs.getDate();
-                                            var mm = dateNs.getMonth() + 1; //January is 0!
-
-                                            var yyyy = dateNs.getFullYear();
-                                            if(dd < 10){
-                                                dd= '0' + dd;
-                                            }
-                                            if(mm < 10){
-                                                mm= '0' + mm;
-                                            }
-                                            ngaysinh = dd+'/'+mm+'/'+yyyy;
-                                        }
-
-                                        DVTT = result[0].DVTT;
-                                        STT_BENHAN = result[0].STT_BENHAN;
-                                        $.ajax({
-                                            url : window.location.origin + '/web_his/noitru_chitiet_dotdieutri',
-                                            type : "post",
-                                            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                                            data : {
-                                                 dvtt : DVTT,
-                                                 stt_benhan : STT_BENHAN,
-                                                 stt_dotdieutri : $('#txt_dotdieutri').val()
-                                            },
-                                            success : function (data){
-                                                ngayBD = data.NGAYBATDAU_THEBHYT;
-                                                ngayKT = data.NGAYHETHAN_THEBHYT;
-                                                noidangky = data.NOIDANGKYBANDAU;
-                                                kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, ngayBD, ngayKT, noidangky, gioitinh);
-                                            }
-                                        });
-                                    }
-                                });
-
-                                //return;
-                            }else if(document.URL.indexOf('khambenhngoaitru') != -1){
-								
-								$.ajax({
-                                    url : window.location.origin +'/web_his/timkiembntheobhyt?bhyt=0&mabn=' + $('#mayte').val(),
-                                    type : "GET",
-                                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                                    data : {
-                                    },
-                                    success : function (result){
-                                        var dateNs = new Date(result[0].NGAY_SINH);
-										var ten = $('#hoten').val();
-										var mathe = $('#bhyt').val();
-										var gioitinh = $('#gioitinh').val() == 'true' ? 1 : 2;
-                                        if (result[0].HIEN_NAMSINH) {
-                                            ngaysinh = dateNs.getFullYear();
-                                        } else {
-                                            var dd = dateNs.getDate();
-                                            var mm = dateNs.getMonth() + 1; //January is 0!
-
-                                            var yyyy = dateNs.getFullYear();
-                                            if(dd < 10){
-                                                dd= '0' + dd;
-                                            }
-                                            if(mm < 10){
-                                                mm= '0' + mm;
-                                            }
-                                            ngaysinh = dd+'/'+mm+'/'+yyyy;
-                                        }
-				
-                                        DVTT = result[0].DVTT;
-										ngayBD = result[0].NGAY_BATDAUHIEULUC.substring(8,10)+'/'+result[0].NGAY_BATDAUHIEULUC.substring(5,7)+'/'+result[0].NGAY_BATDAUHIEULUC.substring(0,4);
-                                        ngayKT = result[0].NGAY_KETTHUC.substring(8,10)+'/'+result[0].NGAY_KETTHUC.substring(5,7)+'/'+result[0].NGAY_KETTHUC.substring(0,4);
-                                        noidangky = result[0].MA_NOITIEPNHAN;
-										kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, ngayBD, ngayKT, noidangky, gioitinh);
-                                    }
-                                });
-								return;
+							} else {
+								return 'Tên đăng nhập hoặc mật khẩu không đúng!';
 							}
-
-
-
-                        }
-                        
-                    } else {
-                        return 'Tên đăng nhập hoặc mật khẩu không đúng!';
-                    }
-                }
-            });
-        } else {
-            return 'Cần thiết lập tên đăng nhập và mật khẩu';
-        }
+						}
+					});
+				} //else {
+					//return 'Cần thiết lập tên đăng nhập và mật khẩu';
+				//}
+			});
+	//console.log("Khởi tạo thành công");
+    //chrome.storage.sync.get(['tendangnhap', 'matkhau'], function(items) {
+        
     //});
 }
 function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, ngayBD, ngayKT, noidangky, gioitinh) {
