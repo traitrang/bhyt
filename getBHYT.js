@@ -246,7 +246,7 @@ function LayThongBHYT_LichSuKham() {
 								}
 								
 							} else {
-								return 'Tên đăng nhập hoặc mật khẩu không đúng!';
+								swal( 'Tên đăng nhập hoặc mật khẩu không đúng!');
 							}
 						}
 					});
@@ -379,7 +379,7 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
                                 }
                                 text + '</tbody></table>';
                             }
-                            return text;
+                            swal( text);
                 } else {
 					var urllichsu = "https://egw.baohiemxahoi.gov.vn/api/egw/nhanLichSuKCB?token=" + dataAuth.APIKey.access_token 
                     + '&id_token=' + dataAuth.APIKey.id_token 
@@ -387,7 +387,7 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
                     + '&password=' + matkhau;
                 }
             } else {
-                return '<span style="color:red">' + result.ghiChu + '</span>';
+                swal( '<span style="color:red">' + result.ghiChu + '</span>');
             }
         }
     });
