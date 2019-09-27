@@ -18,7 +18,7 @@ function LayThongBHYT_LichSuKham() {
 			function(t)
 			{
 				tendangnhap=$(t).find("#motathamso123").val();
-				tendangnhap=$(t).find("#motathamso124").val();
+				matkhau=$(t).find("#motathamso124").val();
 				
 				matkhau = MD5(matkhau);
 				console.log(tendangnhap +'  '+ matkhau);
