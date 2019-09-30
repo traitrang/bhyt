@@ -14,7 +14,7 @@ ketquadieutri[5] = 'Tử vong';
 
 function LayThongBHYT_LichSuKham() {
     var tendangnhap = '';
-	$.get("https://yte-hungyen.vnpthis.vn/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",
+	$.get(window.location.origin+"/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",
 			function(t)
 			{
 				tendangnhap=$(t).find("#motathamso123").val();
