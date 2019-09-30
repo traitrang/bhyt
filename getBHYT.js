@@ -381,10 +381,7 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
                             }
                             swal( text);
                 } else {
-					var urllichsu = "https://egw.baohiemxahoi.gov.vn/api/egw/nhanLichSuKCB?token=" + dataAuth.APIKey.access_token 
-                    + '&id_token=' + dataAuth.APIKey.id_token 
-                    + '&username=' + tendangnhap 
-                    + '&password=' + matkhau;
+					swal( '<span style="color:red">' + result.ghiChu + '</span>');
                 }
             } else {
                 swal( '<span style="color:red">' + result.ghiChu + '</span>');
