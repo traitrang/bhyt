@@ -381,7 +381,7 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
                             }
                             swal( text);
                 } else {
-					swal( '<span style="color:red">' + result.ghiChu + '</span>');
+					swal( '<span style="color:#006600">' + result.ghiChu + '</span>');
                 }
             } else {
                 swal( '<span style="color:red">' + result.ghiChu + '</span>');
