@@ -359,8 +359,8 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
                                 text += '</tr>';
                                 for (var i = 0; i <= dulieubaohiem.dsLichSuKCB2018.length - 1; i ++) {
 									
-									stringNgayra = dulieubaohiem.dsLichSuKCB2018[i].ngayVao;
-									stringNgayvao = dulieubaohiem.dsLichSuKCB2018[i].ngayRa;
+									stringNgayvao = dulieubaohiem.dsLichSuKCB2018[i].ngayVao;
+									stringNgayra = dulieubaohiem.dsLichSuKCB2018[i].ngayRa;
 							
 									stringNgayra = stringNgayra.substring(6,8) + '-' + stringNgayra.substring(4,6) + '-' + stringNgayra.substring(0,4);
 									stringNgayvao = stringNgayvao.substring(6,8) + '-' + stringNgayvao.substring(4,6) + '-' + stringNgayvao.substring(0,4);
