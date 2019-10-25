@@ -454,7 +454,7 @@ function Check_Get_BHYT(ReSult_BHYT)
 								SetValueThongTinBHYT(ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTu,ReSult_BHYT.gtTheDen,ReSult_BHYT.maDKBD,ReSult_BHYT.maDKBD,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi);
 							}
 	else{
-		if(ReSult_BHYT.maKetQua==='001'||ReSult_BHYT.ghiChu.indexOf('Chưa có thông tin')> -1){
+		if(ReSult_BHYT.maKetQua==='001'||ReSult_BHYT.maKetQua==='002'){
 			document.getElementById("tungay").disabled = false;
 			document.getElementById("denngay").disabled = false;
 		}
