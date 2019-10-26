@@ -403,11 +403,11 @@ function SetValueThongTinBHYT(soTheBHYT,hoten,namsinh,bool_namsinh,gt_tungay,gt_
 	$('#gioitinh').val(gioitinh);
 	$('#dungtuyen').prop('checked', bool_dungtuyen);
 	$('#diachi').val(diachi);
-	const date1 = getDate(new Date());
-	const date2 = new Date(gt_denngay);
-	const diffTime = Math.abs(date2 - date1);
-	const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-	$(".songayconbhyt").text(diffDays);
+	//const date1 = getDate(new Date());
+	//const date2 = new Date(gt_denngay);
+	// diffTime = Math.abs(date2 - date1);
+	//const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+	//$(".songayconbhyt").text(diffDays);
 }
 function Check_Get_BHYT(ReSult_BHYT)
 {
