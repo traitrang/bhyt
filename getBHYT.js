@@ -11,7 +11,6 @@ ketquadieutri[2] = 'Đỡ';
 ketquadieutri[3] = 'Không thay đổi';
 ketquadieutri[4] = 'Nặng hơn';
 ketquadieutri[5] = 'Tử vong';
-
 function LayThongBHYT_LichSuKham() {
     var tendangnhap = '';
 	$.get(window.location.origin+"/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",
@@ -19,10 +18,7 @@ function LayThongBHYT_LichSuKham() {
 			{
 				tendangnhap=$(t).find("#motathamso123").val();
 				matkhau=$(t).find("#motathamso124").val();
-				
 				matkhau = MD5(matkhau);
-				console.log(tendangnhap +'  '+ matkhau);
-					
 				if (tendangnhap || matkhau) {
 					$.ajax({
 						url : "https://egw.baohiemxahoi.gov.vn/api/token/take",
@@ -63,7 +59,6 @@ function LayThongBHYT_LichSuKham() {
 										ngayKT = $('#txtBHYT_KT').val();
 									}
 								}
-
 								if (document.URL.indexOf('vnpthis.vn/web_his') != -1) {
 									if (document.URL.indexOf('tiepnhan') != -1) {
 										var ten = $('#hoten').val();
@@ -74,12 +69,10 @@ function LayThongBHYT_LichSuKham() {
 										var ngayKT = $('#denngay').val();
 										var noidangky = $('#noidangky').val();
 										var gioitinh = $('#gioitinh').val() == 1 ? 1 : 2;
-										
 										if (isChiNamsinh) {
 											y = new Date(ngaysinh);
 											ngaysinh = y.getFullYear();
 										}
-										
 										kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, ngayBD, ngayKT, noidangky, gioitinh);
 									} else if (document.URL.indexOf('kiemtrabangke') != -1 ) {
 										var ten = $('#hoten').val();
@@ -104,7 +97,6 @@ function LayThongBHYT_LichSuKham() {
 												} else {
 													var dd = dateNs.getDate();
 													var mm = dateNs.getMonth() + 1; //January is 0!
-
 													var yyyy = dateNs.getFullYear();
 													if(dd < 10){
 														dd= '0' + dd;
@@ -114,11 +106,9 @@ function LayThongBHYT_LichSuKham() {
 													}
 													ngaysinh = dd+'/'+mm+'/'+yyyy;
 												}
-
 												kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, ngayBD, ngayKT, noidangky, gioitinh);
 											}
 										});
-
 										return;
 									} else if (document.URL.indexOf('khambenhnoitru') != -1) {
 										var id = $("#list_benhnhan").jqGrid('getGridParam', 'selrow');
@@ -134,7 +124,6 @@ function LayThongBHYT_LichSuKham() {
 										var ngayKT = '';
 										var stt_benhan='';
 										var stt_dotdieutri='';
-										
 										var id = $("#list_benhnhan").jqGrid('getGridParam', 'selrow');
 										var ret = $("#list_benhnhan").jqGrid('getRowData', id);
 										if(mathe !=''||mathe!=null){
@@ -155,7 +144,6 @@ function LayThongBHYT_LichSuKham() {
 												}
 											});
 										}
-										
 										$.ajax({
 											url : window.location.origin + '/web_his/thongtinhanhchinh_nhapvien_theomabenhnhan?mabenhnhan=' + $('#mabenhnhan').val(),
 											type : "GET",
@@ -179,7 +167,6 @@ function LayThongBHYT_LichSuKham() {
 													}
 													ngaysinh = dd+'/'+mm+'/'+yyyy;
 												}
-
 												DVTT = result[0].DVTT;
 												STT_BENHAN = result[0].STT_BENHAN;
 												$.ajax({
@@ -200,10 +187,7 @@ function LayThongBHYT_LichSuKham() {
 												});
 											}
 										});
-
-										//return;
 									}else if(document.URL.indexOf('khambenhngoaitru') != -1){
-										
 										$.ajax({
 											url : window.location.origin +'/web_his/timkiembntheobhyt?bhyt=0&mabn=' + $('#mayte').val(),
 											type : "GET",
@@ -230,7 +214,6 @@ function LayThongBHYT_LichSuKham() {
 													}
 													ngaysinh = dd+'/'+mm+'/'+yyyy;
 												}
-						
 												DVTT = result[0].DVTT;
 												ngayBD = result[0].NGAY_BATDAUHIEULUC.substring(8,10)+'/'+result[0].NGAY_BATDAUHIEULUC.substring(5,7)+'/'+result[0].NGAY_BATDAUHIEULUC.substring(0,4);
 												ngayKT = result[0].NGAY_KETTHUC.substring(8,10)+'/'+result[0].NGAY_KETTHUC.substring(5,7)+'/'+result[0].NGAY_KETTHUC.substring(0,4);
@@ -240,24 +223,14 @@ function LayThongBHYT_LichSuKham() {
 										});
 										return;
 									}
-
-
-
 								}
-								
 							} else {
 								swal( 'Tên đăng nhập hoặc mật khẩu không đúng!');
 							}
 						}
 					});
-				} //else {
-					//return 'Cần thiết lập tên đăng nhập và mật khẩu';
-				//}
+				} 
 			});
-	//console.log("Khởi tạo thành công");
-    //chrome.storage.sync.get(['tendangnhap', 'matkhau'], function(items) {
-        
-    //});
 }
 function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, ngaysinh, ngayBD, ngayKT, noidangky, gioitinh) {
     var url = "https://egw.baohiemxahoi.gov.vn/api/egw/NhanLichSuKCB2018?token=" + dataAuth.APIKey.access_token + '&id_token=' + dataAuth.APIKey.id_token + '&username=' + tendangnhap + '&password=' + matkhau;
@@ -265,7 +238,6 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
 	document.getElementById("tungay").disabled = true;
 	document.getElementById("denngay").disabled = true;
 	}
-	
     $.ajax({
         url : url,
         type : "post",
@@ -295,11 +267,9 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
                             if (dulieubaohiem.gtTheTu != ngayBD || dulieubaohiem.gtTheDen != ngayKT) {
                                 text += '<br/><span style="color:red">Sai thời hạn sử dụng thẻ. Thời hạn đúng: ' + dulieubaohiem.gtTheTu + ' - ' + dulieubaohiem.gtTheDen + '</span>';
                             }
-
                             if (dulieubaohiem.ngaySinh != ngaysinh) {
                                 text += '<br/><span style="color:red">Sai ngày sinh. Ngày sinh đúng: ' + dulieubaohiem.ngaySinh + '</span>';
                             }
-
                             if (document.URL.indexOf('khambenhnoitru') != -1) {
                                 text = '';
                                 if (dulieubaohiem.gtTheTu != ngayBD || dulieubaohiem.gtTheDen != ngayKT) {
@@ -309,16 +279,13 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
                                     text += '<br/><span style="color:red">Ngày sinh đúng: ' + dulieubaohiem.ngaySinh + '</span>';
                                 }
                             }
-
                             if (dulieubaohiem.maDKBD != noidangky) {
                                 text += '<br/><span style="color:red">Sai nơi đăng ký. Nơi đăng ký đúng: ' + dulieubaohiem.maDKBD + '</span>';
                             }
-
                             var convertGt = dulieubaohiem.gioiTinh == 'Nam' ? 1 : 2;
                             if (convertGt != gioitinh) {
                                 text += '<br/><span style="color:red">Sai giới tính. Giới tính đúng: ' + dulieubaohiem.gioiTinh + '</span>';
                             }
-
                             text += '<br/> <span style="color:#006600;font-size: 14pt;font-weight: bold;">' + dulieubaohiem.ghiChu;
                             text += '</span>';
                             if (dulieubaohiem.dsLichSuKCB2018) {
@@ -335,11 +302,9 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
                                 }
                                 var today = dd+'-'+mm+'-'+yyyy;
                                 var lastDay = stringNgayra.substring(0,10);
-                                //var d = '';
                                 if (today == lastDay) {
                                     text += '<br/><span style="color: red;">Bệnh nhân đã khám một lần trong ngày!</span>';
                                 }
-
                                 text += '<br/><table border="1" style="font-size: 10px"><tbody style="display: inline-block;overflow-y: scroll;max-height:200px;">';
                                 var headerTAble = [
                                     'STT',  
@@ -364,7 +329,6 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
 							
 									stringNgayra = stringNgayra.substring(6,8) + '-' + stringNgayra.substring(4,6) + '-' + stringNgayra.substring(0,4);
 									stringNgayvao = stringNgayvao.substring(6,8) + '-' + stringNgayvao.substring(4,6) + '-' + stringNgayvao.substring(0,4);
-									
                                     text += '<tr>';
                                         text += '<td>' + (i + 1) + '</td>';
                                         text += '<td>' + mathe + '</td>';
@@ -404,9 +368,7 @@ function SetValueThongTinBHYT(soTheBHYT,hoten,namsinh,bool_namsinh,gt_tungay,gt_
 	$('#dungtuyen').prop('checked', bool_dungtuyen);
 	$('#diachi').val(diachi);
 	var date1 = getDate(new Date());
-	//const date2 = new Date(gt_denngay);
 	var diffDays = getDateDiff(date1,gt_denngay)
-	//const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 	$(".songayconbhyt").text(diffDays);
 }
 function Check_Get_BHYT(ReSult_BHYT)
@@ -424,7 +386,6 @@ function Check_Get_BHYT(ReSult_BHYT)
 								if(ReSult_BHYT.ngaySinh.length == 4){
 									 bool_namsinh = true;
 									 ReSult_BHYT.ngaySinh = '01/01/'+ReSult_BHYT.ngaySinh;
-									 
 								}else{
 									tuoi = Yearnow - parseInt(ReSult_BHYT.ngaySinh.substring(6,10));
 									if(tuoi>6)
@@ -445,7 +406,6 @@ function Check_Get_BHYT(ReSult_BHYT)
 										}
 									}
 								}
-									
 								if(ReSult_BHYT.gioiTinh=='Nam'){
 									bool_Gioitinh = 'true';
                                     Value_Gioitinh = 1;
@@ -469,9 +429,8 @@ function Check_Get_BHYT(ReSult_BHYT)
 };
 LayThongBHYT_LichSuKham();
 function getDate(today){
-	//var today = new Date();
 	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
+	var mm = today.getMonth()+1;
 	var yyyy = today.getFullYear();
 
 	if(dd<10) {
@@ -482,17 +441,14 @@ function getDate(today){
 		mm = '0'+mm
 	} 
 
-	today = mm + '/' + dd + '/' + yyyy;
+	today = dd + '/' + mm + '/' + yyyy;
 	return today;
 };
 function getDateDiff(time1, time2) {
   var str1= time1.split('/');
   var str2= time2.split('/');
-
-  //                yyyy   , mm       , dd
   var t1 = new Date(str1[2], str1[0]-1, str1[1]);
   var t2 = new Date(str2[2], str2[0]-1, str2[1]);
-
   var diffMS = t1 - t2;    
   //console.log(diffMS + ' ms');
 
