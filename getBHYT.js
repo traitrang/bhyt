@@ -278,7 +278,7 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
         success : function (result){
             var maketqua = ['000', '001', '002', '003', '004'];
             if (result.maKetQua === '000' || result.maKetQua === '001' || result.maKetQua === '002'||result.maKetQua === '003'||result.maKetQua === '003') {
-				if(document.URL.indexOf('tiepnhanbenhnhan') != -1||document.URL.indexOf('tiepnhancapcuu') != -1)
+			if(document.URL.indexOf('tiepnhanbenhnhan') != -1||document.URL.indexOf('tiepnhancapcuu') != -1)
 				Check_Get_BHYT(result);
 				text = '';
                 var dulieubaohiem = result;
@@ -389,8 +389,9 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
         }
     });
 }
-function SetValueThongTinBHYT(hoten,namsinh,bool_namsinh,gt_tungay,gt_denngay,noidangky,cbnoidangky,bool_gioitinh,gioitinh,bool_dungtuyen,diachi){
+function SetValueThongTinBHYT(soTheBHYT,hoten,namsinh,bool_namsinh,gt_tungay,gt_denngay,noidangky,cbnoidangky,bool_gioitinh,gioitinh,bool_dungtuyen,diachi){
 	 hoten = hoten.toUpperCase();
+	$('#sobhyt').val(soTheBHYT);
 	$('#hoten').val(hoten);
 	$('#namsinh').val(namsinh);
 	$('#chinamsinh').prop('checked',bool_namsinh);
@@ -454,8 +455,10 @@ function Check_Get_BHYT(ReSult_BHYT)
 									bool_Gioitinh = 'false';
                                     Value_Gioitinh = 0;
 								}
-								
-								SetValueThongTinBHYT(ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTu,ReSult_BHYT.gtTheDen,ReSult_BHYT.maDKBD,ReSult_BHYT.maDKBD,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi);
+								if(ReSult_BHYT.ghiChu.indexOf('Chủ thẻ đã được cấp mã thẻ mới')>-1)
+								SetValueThongTinBHYT(ReSult_BHYT.maTheMoi,ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTuMoi,ReSult_BHYT.gtTheDenMoi,ReSult_BHYT.maDKBDMoi,ReSult_BHYT.maDKBDMoi,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi);
+								else
+								SetValueThongTinBHYT(ReSult_BHYT.ReSult_BHYT.maTheMoi,ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTu,ReSult_BHYT.gtTheDen,ReSult_BHYT.maDKBD,ReSult_BHYT.maDKBD,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi);
 							}
 	else{
 		if(ReSult_BHYT.maKetQua==='001'||ReSult_BHYT.maKetQua==='002'){
