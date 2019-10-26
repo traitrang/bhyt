@@ -411,7 +411,7 @@ function SetValueThongTinBHYT(soTheBHYT,hoten,namsinh,bool_namsinh,gt_tungay,gt_
 }
 function Check_Get_BHYT(ReSult_BHYT)
 {
-	if(result.maKetQua === '000'||result.maKetQua === '003'){
+	if(ReSult_BHYT.maKetQua === '000'||ReSult_BHYT.maKetQua === '003'){
 								var bool_namsinh = false;
 								var bool_gioitinh = 'false';
 								var value_gioitinh = 0;
