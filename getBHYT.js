@@ -367,7 +367,7 @@ function SetValueThongTinBHYT(soTheBHYT,hoten,namsinh,bool_namsinh,gt_tungay,gt_
 	$('#gioitinh').val(gioitinh);
 	$('#dungtuyen').prop('checked', bool_dungtuyen);
 	$('#diachi').val(diachi);
-	var date1 = getDate(new Date());
+	var date1 = getDate_format(new Date());
 	var diffDays = getDateDiff(gt_denngay,date1)+1;
 	$(".songayconbhyt").text(diffDays);
 }
@@ -428,7 +428,7 @@ function Check_Get_BHYT(ReSult_BHYT)
 	}
 };
 LayThongBHYT_LichSuKham();
-function getDate(today){
+function getDate_format(today){
 	var dd = today.getDate();
 	var mm = today.getMonth()+1;
 	var yyyy = today.getFullYear();
