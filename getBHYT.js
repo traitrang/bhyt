@@ -368,7 +368,7 @@ function SetValueThongTinBHYT(soTheBHYT,hoten,namsinh,bool_namsinh,gt_tungay,gt_
 	$('#dungtuyen').prop('checked', bool_dungtuyen);
 	$('#diachi').val(diachi);
 	var date1 = getDate(new Date());
-	var diffDays = getDateDiff(date1,gt_denngay)
+	var diffDays = getDateDiff(gt_denngay,date1)+1;
 	$(".songayconbhyt").text(diffDays);
 }
 function Check_Get_BHYT(ReSult_BHYT)
@@ -447,8 +447,8 @@ function getDate(today){
 function getDateDiff(time1, time2) {
   var str1= time1.split('/');
   var str2= time2.split('/');
-  var t1 = new Date(str1[2], str1[0]-1, str1[1]);
-  var t2 = new Date(str2[2], str2[0]-1, str2[1]);
+  var t1 = new Date(str1[2], str1[1], str1[0]-1);
+  var t2 = new Date(str2[2], str2[1], str2[0]-1);
   var diffMS = t1 - t2;    
   //console.log(diffMS + ' ms');
 
