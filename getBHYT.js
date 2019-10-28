@@ -415,7 +415,7 @@ function Check_Get_BHYT(ReSult_BHYT)
 									bool_Gioitinh = 'false';
                                     Value_Gioitinh = 0;
 								}
-								if(ReSult_BHYT.ghiChu.indexOf('Chủ thẻ đã được cấp mã thẻ mới')>-1)
+								if(ReSult_BHYT.ghiChu.indexOf('Chủ thẻ đã được cấp mã thẻ mới')>-1 ||ReSult_BHYT.ghiChu.indexOf('Thẻ được gia hạn thêm')>-1)
 								SetValueThongTinBHYT(ReSult_BHYT.maTheMoi,ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTuMoi,ReSult_BHYT.gtTheDenMoi,ReSult_BHYT.maDKBDMoi,ReSult_BHYT.maDKBDMoi,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi);
 								else
 								SetValueThongTinBHYT(ReSult_BHYT.maThe,ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTu,ReSult_BHYT.gtTheDen,ReSult_BHYT.maDKBD,ReSult_BHYT.maDKBD,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi);
