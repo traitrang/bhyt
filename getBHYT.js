@@ -416,7 +416,7 @@ function Check_Get_BHYT(ReSult_BHYT)
 									bool_Gioitinh = 'false';
                                     Value_Gioitinh = 0;
 								}
-								var DauThe = ReSult_BHYT.maThe(0,3);
+								var DauThe = ReSult_BHYT.maThe.substring(0,3);
 											var url1 = "https://yte-hungyen.vnpthis.vn/web_his/kiemtrathebhyt?madt="+DauThe
 											$.ajax({
 											url : url1,
