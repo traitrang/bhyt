@@ -417,7 +417,7 @@ function Check_Get_BHYT(ReSult_BHYT)
                                     Value_Gioitinh = 0;
 								}
 								var DauThe = ReSult_BHYT.maThe.substring(0,3);
-											var url1 = "https://yte-hungyen.vnpthis.vn/web_his/kiemtrathebhyt?madt="+DauThe
+											var url1 = "https://yte-hungyen.vnpthis.vn/web_his/kiemtrathebhyt?madt="+DauThe;
 											$.ajax({
 											url : url1,
 											type : "post",
