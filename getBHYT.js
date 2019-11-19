@@ -436,7 +436,7 @@ function Check_Get_BHYT(ReSult_BHYT)
 												SetValueThongTinBHYT(ReSult_BHYT.maThe,ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTu,ReSult_BHYT.gtTheDen,ReSult_BHYT.maDKBD,ReSult_BHYT.maDKBD,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi,res[1]);
 									 }
 								};
-								xhttp.open("POST", DauThe, true);
+								xhttp.open("POST", url1, true);
 								xhttp.setRequestHeader("Content-type", "application/json");
 								xhttp.send("Your JSON Data Here");
 								
