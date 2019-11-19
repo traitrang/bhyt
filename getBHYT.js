@@ -367,7 +367,7 @@ function SetValueThongTinBHYT(soTheBHYT,hoten,namsinh,bool_namsinh,gt_tungay,gt_
 	$('#gioitinh').val(gioitinh);
 	$('#dungtuyen').prop('checked', bool_dungtuyen);
 	$('#diachi').val(diachi);
-	//$('#tlmiengiam').val(MucHuong);
+	$('#tlmiengiam').val(MucHuong);
 	var date1 = getDate_format();
 	var diffDays = getDateDiff(gt_denngay,date1)+1;
 	$(".songayconbhyt").text(diffDays);
