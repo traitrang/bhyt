@@ -391,6 +391,7 @@ function Check_Get_BHYT(ReSult_BHYT)
 									if(ReSult_BHYT.ngaySinh.length == 7)
 									{
 										ReSult_BHYT.ngaySinh = '01/'+ReSult_BHYT.ngaySinh;
+										bool_namsinh = true;
 									}
 									tuoi = Yearnow - parseInt(ReSult_BHYT.ngaySinh.substring(6,10));
 									if(tuoi>6)
