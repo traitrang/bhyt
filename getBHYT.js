@@ -362,7 +362,8 @@ function SetValueThongTinBHYT(soTheBHYT,hoten,namsinh,bool_namsinh,gt_tungay,gt_
 	$("#tungay").val(gt_tungay);
 	$('#denngay').val(gt_denngay);
 	$('#noidangky').val(noidangky);
-	$('#cbnoidangky').val(loadcbnoidangky(noidangky));
+	loadcbnoidangky(noidangky);
+	//$('#cbnoidangky').val(loadcbnoidangky(noidangky));
 	$('#cbgioitinh').val(bool_gioitinh);
 	$('#gioitinh').val(gioitinh);
 	$('#dungtuyen').prop('checked', bool_dungtuyen);
@@ -498,7 +499,8 @@ function loadcbnoidangky(dvtt) {
 	var url  = "https://yte-hungyen.vnpthis.vn/web_his/laynoidangkykcb?noidangky="+dvtt;
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
+			$('#cbnoidangky').val(this.responseText);
+            //console.log(this.responseText);
        }
     };
     xhttp.open("GET", url, true);
