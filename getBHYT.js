@@ -499,7 +499,8 @@ function loadcbnoidangky(dvtt) {
 	var url  = "https://yte-hungyen.vnpthis.vn/web_his/laynoidangkykcb?noidangky="+dvtt;
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-			$('#cbnoidangky').val(this.responseText);
+			$("#noidangky_hienthi").val(this.responseText);
+			$('#cbnoidangky').val(dvtt);
             //console.log(this.responseText);
        }
     };
