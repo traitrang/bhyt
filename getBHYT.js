@@ -21,7 +21,7 @@ function LayThongBHYT_LichSuKham() {
 				tendangnhap=$(t).find("#motathamso123").val();
 				matkhau=$(t).find("#motathamso124").val();
 				matkhau = MD5(matkhau);
-				if(tendangnhap <> '')
+				if(tendangnhap != '')
 					DVTT = tendangnhap.substring(0,5);
 				if (tendangnhap || matkhau) {
 					$.ajax({
