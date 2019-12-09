@@ -11,6 +11,8 @@ ketquadieutri[2] = 'Đỡ';
 ketquadieutri[3] = 'Không thay đổi';
 ketquadieutri[4] = 'Nặng hơn';
 ketquadieutri[5] = 'Tử vong';
+var DVTT = null;
+var BV_Tuyen2_HYN = ['33016','33017','33018','33031','33913'];
 function LayThongBHYT_LichSuKham() {
     var tendangnhap = '';
 	$.get(window.location.origin+"/web_his/Cau_Hinh_Tham_So_XuatXMLBHYT",
@@ -19,6 +21,8 @@ function LayThongBHYT_LichSuKham() {
 				tendangnhap=$(t).find("#motathamso123").val();
 				matkhau=$(t).find("#motathamso124").val();
 				matkhau = MD5(matkhau);
+				if(tendangnhap <> '')
+					DVTT = tendangnhap.substring(0,5);
 				if (tendangnhap || matkhau) {
 					$.ajax({
 						url : "https://egw.baohiemxahoi.gov.vn/api/token/take",
@@ -366,7 +370,8 @@ function SetValueThongTinBHYT(soTheBHYT,hoten,namsinh,bool_namsinh,gt_tungay,gt_
 	//$('#cbnoidangky').val(loadcbnoidangky(noidangky));
 	$('#cbgioitinh').val(bool_gioitinh);
 	$('#gioitinh').val(gioitinh);
-	$('#dungtuyen').prop('checked', bool_dungtuyen);
+	if(DVTT.indexOf(BV_Tuyen2_HYN)!= -1)
+		$('#dungtuyen').prop('checked', bool_dungtuyen);
 	$('#diachi').val(diachi);
 	$('#tlmiengiam').val(MucHuong);
 	var date1 = getDate_format();
@@ -501,7 +506,6 @@ function loadcbnoidangky(dvtt) {
         if (this.readyState == 4 && this.status == 200) {
 			$("#noidangky_hienthi").val(this.responseText);
 			$('#cbnoidangky').val(dvtt);
-            //console.log(this.responseText);
        }
     };
     xhttp.open("GET", url, true);
