@@ -253,7 +253,7 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
         },
         success : function (result){
             var maketqua = ['000', '001', '002', '003', '004'];
-            if (result.maKetQua === '000' || result.maKetQua === '001' || result.maKetQua === '002'||result.maKetQua === '003'||result.maKetQua === '003') {
+            if (result.maKetQua === '000' || result.maKetQua === '001' || result.maKetQua === '002'||result.maKetQua === '003'||result.maKetQua === '004') {
 			if(document.URL.indexOf('tiepnhanbenhnhan') != -1||document.URL.indexOf('tiepnhancapcuu') != -1)
 				Check_Get_BHYT(result);
 				text = '';
