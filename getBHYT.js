@@ -451,8 +451,7 @@ function Check_Get_BHYT(ReSult_BHYT)
 												{
 													SetValueThongTinBHYT(ReSult_BHYT.maThe,ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTu,ReSult_BHYT.gtTheDen,ReSult_BHYT.maDKBD,ReSult_BHYT.maDKBD,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi,res[1]);
 												}
-											}
-												
+											}	
 											else
 												SetValueThongTinBHYT(ReSult_BHYT.maThe,ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTu,ReSult_BHYT.gtTheDen,ReSult_BHYT.maDKBD,ReSult_BHYT.maDKBD,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi,res[1]);
 									 }
