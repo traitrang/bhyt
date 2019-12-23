@@ -358,6 +358,10 @@ function kiemtrathongtinthebaohiem(dataAuth, tendangnhap, matkhau, ten, mathe, n
     });
 }
 function SetValueThongTinBHYT(soTheBHYT,hoten,namsinh,bool_namsinh,gt_tungay,gt_denngay,noidangky,cbnoidangky,bool_gioitinh,gioitinh,bool_dungtuyen,diachi,MucHuong){
+	
+	
+
+	
 	hoten = hoten.toUpperCase();
 	$('#sobhyt').val(soTheBHYT);
 	$('#hoten').val(hoten);
@@ -429,20 +433,26 @@ function Check_Get_BHYT(ReSult_BHYT)
 								}
 								var DauThe = ReSult_BHYT.maThe.substring(0,3);
 								var url1 = "https://yte-hungyen.vnpthis.vn/web_his/kiemtrathebhyt?madt="+DauThe;
-								/*$.ajax({
-								url : url1,
-								type : "post",
-								contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-								dataType:"json",
-								success : function (result){
-								var res = result.split(":");*/
 								var xhttp = new XMLHttpRequest();
 								xhttp.onreadystatechange = function() {
 									if (this.readyState == 4 && this.status == 200) {
 											var result = this.responseText;
 											var res = result.split(":");
+												
 											if(ReSult_BHYT.ghiChu.indexOf('Chủ thẻ đã được cấp mã thẻ mới')>-1 ||ReSult_BHYT.ghiChu.indexOf('Thẻ được gia hạn thêm')>-1)
-												SetValueThongTinBHYT(ReSult_BHYT.maTheMoi,ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTuMoi,ReSult_BHYT.gtTheDenMoi,ReSult_BHYT.maDKBDMoi,ReSult_BHYT.maDKBDMoi,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi,res[1]);
+											{
+												var d1 = new Date(ReSult_BHYT.gtTheTuMoi+" 00:00:00");
+												var d2 = new Date(getDate_format()+" 00:00:00");
+												if(d1>=d2)
+												{
+													SetValueThongTinBHYT(ReSult_BHYT.maTheMoi,ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTuMoi,ReSult_BHYT.gtTheDenMoi,ReSult_BHYT.maDKBDMoi,ReSult_BHYT.maDKBDMoi,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi,res[1]);
+												}
+												else
+												{
+													SetValueThongTinBHYT(ReSult_BHYT.maThe,ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTu,ReSult_BHYT.gtTheDen,ReSult_BHYT.maDKBD,ReSult_BHYT.maDKBD,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi,res[1]);
+												}
+											}
+												
 											else
 												SetValueThongTinBHYT(ReSult_BHYT.maThe,ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTu,ReSult_BHYT.gtTheDen,ReSult_BHYT.maDKBD,ReSult_BHYT.maDKBD,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi,res[1]);
 									 }
