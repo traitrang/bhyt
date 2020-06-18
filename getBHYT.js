@@ -445,7 +445,7 @@ function Check_Get_BHYT(ReSult_BHYT)
 												//var d2 = new Date(getDate_format()+" 00:00:00");
 												var d2 = new Date();
 												d2.setHours(0,0,0,0);
-												if(d1>=d2)
+												if(d1<=d2)
 												{
 													SetValueThongTinBHYT(ReSult_BHYT.maTheMoi,ReSult_BHYT.hoTen,ReSult_BHYT.ngaySinh,bool_namsinh,ReSult_BHYT.gtTheTuMoi,ReSult_BHYT.gtTheDenMoi,ReSult_BHYT.maDKBDMoi,ReSult_BHYT.maDKBDMoi,bool_Gioitinh,Value_Gioitinh,true,ReSult_BHYT.diaChi,res[1]);
 												}
