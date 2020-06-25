@@ -441,7 +441,8 @@ function Check_Get_BHYT(ReSult_BHYT)
 												
 											if(ReSult_BHYT.ghiChu.indexOf('Chủ thẻ đã được cấp mã thẻ mới')>-1 ||ReSult_BHYT.ghiChu.indexOf('Thẻ được gia hạn thêm')>-1)
 											{
-												var d1 = new Date( ReSult_BHYT.gtTheTuMoi.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3") );
+												var d1_tmp = ReSult_BHYT.gtTheTuMoi.split("/");
+												var d1 = new Date( +d1_tmp[2], d1_tmp[1] - 1, +d1_tmp[0] );
 												//var d2 = new Date(getDate_format()+" 00:00:00");
 												var d2 = new Date();
 												d2.setHours(0,0,0,0);
